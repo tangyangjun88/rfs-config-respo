@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: rfs-zuul
+
+server:
+  port: 9000
+
+zuul:
+  routes:
+    backend-admin:
+      path: /backend/admin/**
+      serviceId: rfs-web-admin
+    backend-posts:
+      path: /backend/posts/**
+      serviceId: rfs-web-posts
