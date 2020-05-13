@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: rfs-service-upload
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 10010
+
+# 配置日志级别，方别调试
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+#fastDFS配置
+fastdfs.base.url: http://192.168.1.130:8888/
+storage:
+  type: fastdfs
+  fastdfs:
+    tracker_server: 192.168.1.130:22122

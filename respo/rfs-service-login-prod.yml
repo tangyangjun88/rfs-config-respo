@@ -1,16 +1,57 @@
 spring:
   application:
     name: rfs-service-login
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
   datasource:
-    druid:
-      url: jdbc:mysql://192.168.1.130:4000/itoken-service-admin?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      username: root
-      password:
-      initial-size: 1
-      min-idle: 1
-      max-active: 20
-      test-on-borrow: true
-      driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    jdbc-url: jdbc:mysql://192.168.1.130:3307/rfs-login?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    hikari:
+      minimum-idle: 5
+      idle-timeout: 600000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  redis:
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0
+    sentinel:
+      master: mymaster
+      nodes: 192.168.1.130:26379, 192.168.1.130:26380, 192.168.1.130:26381
+
 
 server:
   port: 10001
+
+#{rfs.login.oauth2.grant_type
+rfs:
+  login:
+    oauth2:
+      grant_type: password
+      client_id: client
+      client_secret: secret
+      url_oauth_token: http://localhost:10001/oauth/token
+#mybatis相关配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.vada.rfs.service.login.domain
+  configuration:
+    cache-enabled: true
+##日志 设置mybatis的sql语句打印到控制台
+logging:
+  level:
+    com.vada.rfs.service.login.mapper: trace
+
+redis:
+  namespace: rfs.service.login

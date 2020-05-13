@@ -7,9 +7,9 @@ server:
 
 zuul:
   routes:
-    backend-admin:
-      path: /backend/admin/**
-      serviceId: rfs-web-admin
-    backend-posts:
-      path: /backend/posts/**
-      serviceId: rfs-web-posts
+    rfs-service-login:
+      path: /api/login/**
+      serviceId: rfs-service-login
+    rfs-service-admin:
+      path: /api/admin/**
+      serviceId: rfs-service-admin

@@ -3,13 +3,13 @@ spring:
     name: rfs-zuul
 
 server:
-  port: 9000
+  port: 9003
 
 zuul:
   routes:
-    backend-admin:
-      path: /backend/admin/**
-      serviceId: rfs-web-admin
-    backend-posts:
-      path: /backend/posts/**
-      serviceId: rfs-web-posts
+    api-service-login:
+      path: /api/login/**
+      serviceId: rfs-service-login
+    api-service-admin:
+      path: /api/admin/**
+      serviceId: rfs-service-admin
