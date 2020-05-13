@@ -1,4 +1,4 @@
-spring:
+﻿spring:
   application:
     name: rfs-eureka
 
@@ -15,4 +15,4 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       #defaultZone: http://192.168.1.129:8761/eureka/,http://192.168.1.129:8861/eureka/,http://192.168.1.129:8961/eureka/
-      defaultZone: http://192.168.1.129:8761/eureka/
+      defaultZone: http://193.112.216.112:8761/eureka/
